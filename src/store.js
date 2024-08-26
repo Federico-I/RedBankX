@@ -38,6 +38,10 @@ function accountReducer(state = initialStateAccount, action) {
   }
 }
 
+/////////////////////////////////////////////////
+//             Reducer - Logic
+/////////////////////////////////////////////////
+
 function customerReducer( state = initialStateCustome, action) {
   switch ( action.type ) {
     case "customer/createCustomer":
@@ -54,21 +58,27 @@ function customerReducer( state = initialStateCustome, action) {
   }
 }
 
+//////////////// Combining Reducers //////////////////
+
 const rootReducer = combineReducers({
   account: accountReducer,
   customer: customerReducer,
 });
 
+// In Redux we don't dispatch actions directly into the reducer but to the store instead.
+
 const store = createStore(rootReducer);
 
-store.dispatch({ type: "account/deposit", payload: 500 });
-store.dispatch({ type: "account/withdraw", payload: 200 });
-console.log(store.getState());
+// store.dispatch({ type: "account/deposit", payload: 500 });
+// store.dispatch({ type: "account/withdraw", payload: 200 });
+// console.log(store.getState());
 
-store.dispatch({
-  type: "account/requestLoan",
-  payload: { amount: 1000, purpose: "Buys a car" },
-});
+// store.dispatch({
+//   type: "account/requestLoan",
+//   payload: { amount: 1000, purpose: "Buys a car" },
+// });
+
+// const ACCOUNT_DEPOSIT = "account/deposit";
 
 function deposit(amount) {
   return { 
@@ -97,9 +107,8 @@ function payLoan() {
   };
 }
 
-console.log(store.getState());
-
-store.dispatch({ type: "account/payLoan" });
+// console.log(store.getState());
+// store.dispatch({ type: "account/payLoan" });
 
 function createCustomer(fullName, nationalID) {
   return{
@@ -113,3 +122,7 @@ function createCustomer(fullName, nationalID) {
 function updateName(fullName) {
   return { type: "account/updateName", payload: fullName };
 }
+
+store.dispatch(createCustomer("Threxos Karnos", "8624907252"));
+store.dispatch(deposit(250));
+console.log(store.getState());
