@@ -125,4 +125,4 @@ function updateName(fullName) {
 
 store.dispatch(createCustomer("Threxos Karnos", "8624907252"));
 store.dispatch(deposit(250));
-console.log(store.getState())
+console.log(store.getState());
