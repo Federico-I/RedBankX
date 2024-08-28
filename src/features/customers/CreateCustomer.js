@@ -6,11 +6,12 @@ function Customer() {
   const [fullName, setFullName] = useState("");
   const [nationalId, setNationalId] = useState("");
 
+  // dispatch funtcion
   const dispatch = useDispatch();
 
   function handleClick() {
     if(!fullName || !nationalId) return;
-    dispatch(createCustomer(fullName, nationalId))
+    dispatch(createCustomer(fullName, nationalId));
   }
 
   return (

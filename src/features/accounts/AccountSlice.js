@@ -1,3 +1,5 @@
+import React from "react";
+
 const initialStateAccount = {
   balance: 0,
   loan: 0,
