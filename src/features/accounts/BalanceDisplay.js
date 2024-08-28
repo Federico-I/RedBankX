@@ -10,3 +10,5 @@ function BalanceDisplay() {
 }
 
 export default BalanceDisplay;
+
+// Old way is connect() () function 
