@@ -1,3 +1,4 @@
+import { type } from "@testing-library/user-event/dist/type";
 import React from "react";
 
 const initialStateAccount = {
@@ -9,7 +10,7 @@ const initialStateAccount = {
 export default function accountReducer(state = initialStateAccount, action) {
   switch(action.type) {
     case "action/deposit":
-      return{...state, balance: state.balance + action.payload};
+      return{ ...state, balance: state.balance + action.payload, isLoading: false };
 
     case "action/withdraw":
       return{...state, balance: state.balance - action.payload};
@@ -26,13 +27,17 @@ export default function accountReducer(state = initialStateAccount, action) {
         loan: 0,
         loanPurpose: "",
         balance: state.balance - state.loan,
-      }
+      };
+
+      case "account/convertingCurrency":
+        return { ...state, isLoading: true };
+
     default: 
       return state;
   }
 }
 
-
+///// COMP //////
 export function deposit(amount, currency) {
   if ( currency === "USD" ) return { 
     type: "account/deposit", 
@@ -40,8 +45,10 @@ export function deposit(amount, currency) {
   };
 
 
-  // fetch asyc action to execute before send anything to the store
+  // MIDDLEWEAR - ( TO FETCH DATA ) Thunk
   return async function(dispatch, getState) {
+  // fetch asyc action to execute before send anything to the store
+    dispatch({ type: "account/convertingCurrency" });
 
     // API call
     const res = await fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`);
@@ -50,7 +57,7 @@ export function deposit(amount, currency) {
     //console.log(data);
     const converted = data.rates.USD;
 
-    // retunr acctin
+    // STORE - return acctin 
     dispatch({ type: "account/deposit", payload: converted });
   }
 };
