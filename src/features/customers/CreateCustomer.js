@@ -16,10 +16,10 @@ function Customer() {
 
   return (
     <div>
-      <h2>Create new customer</h2>
+      <h2>Create New Customer</h2>
       <div className="inputs">
         <div>
-          <label>Customer full name</label>
+          <label>Customer Full Name</label>
           <input
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
@@ -32,7 +32,7 @@ function Customer() {
             onChange={(e) => setNationalId(e.target.value)}
           />
         </div>
-        <button onClick={handleClick}>Create new customer</button>
+        <button onClick={handleClick}>Create New Customer</button>
       </div>
     </div>
   );
