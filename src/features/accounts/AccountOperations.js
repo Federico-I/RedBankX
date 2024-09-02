@@ -43,7 +43,7 @@ function AccountOperations() {
 
   return (
     <div>
-      <h2>Your account operations</h2>
+      <h2>Your Account Operations</h2>
       <div className="inputs">
         <div>
           <label>Deposit</label>
@@ -89,13 +89,13 @@ function AccountOperations() {
             onChange={(e) => setLoanPurpose(e.target.value)}
             placeholder="Loan purpose"
           />
-          <button onClick={handleRequestLoan}>Request loan</button>
+          <button onClick={handleRequestLoan}>Request Loan</button>
         </div>
 
         { currentLoan > 0 && (
           <div>
             <span>Pay back ${currentLoan}({currentLoanPurpose})</span>
-            <button onClick={handlePayLoan}>Pay loan</button>
+            <button onClick={handlePayLoan}>Pay Loan</button>
           </div>
         )}
       </div>

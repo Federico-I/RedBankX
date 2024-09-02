@@ -5,6 +5,7 @@ const initialState = {
   balance: 0,
   loan: 0,
   loanPuropse: "",
+  isLoading: false,
 };
 
 const accountSlice = createSlice({
@@ -12,14 +13,14 @@ const accountSlice = createSlice({
   initialState,
   reducers: {
     deposit(state, action) {
-      state.balance += state.balance + action.payload;
+      state.balance += action.payload;
       state.isLoading = false;
     },
     withdraw(state, action) {
       state.balance -= action.payload;
     },
 
-    // funtion Prepare() DATA for REDUCER
+    ////// funtion Prepare() DATA for REDUCER
     requestLoan: {
       prepare( amount, purpose ) {
         return {
@@ -35,19 +36,19 @@ const accountSlice = createSlice({
         state.balance = state.balance + action.payload.amount;
       }, 
     },
-    payload(state) {
+    payLoan(state) {
       state.balance -= state.loan;
       state.loan = 0;
       state.loanPuropse = "";
     },
-    cconvertingCurrency(state) {
+    convertingCurrency(state) {
       state.isLoading = false;
     }
   },
 });
 
 
-export const { withdraw, requestLoan, payload } = accountSlice.actions;
+export const { withdraw, requestLoan, payLoan } = accountSlice.actions;
 
 export function deposit(amount, currency) {
   if ( currency === "USD" ) return { 
@@ -68,7 +69,7 @@ export function deposit(amount, currency) {
     const converted = data.rates.USD;
 
     // STORE - return acctin 
-    dispatch({ type: "account/deposit", payload: converted });
+    dispatch({ type: "account/deposit", payLoan: converted });
   }
 };
 

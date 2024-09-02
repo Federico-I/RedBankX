@@ -7,6 +7,9 @@ const initialStateCustomer = {
   createdAt: "",
 } 
 
+/////////////////////////////////////////////////
+//        Reducer - Logic-Redux-ToolKit
+/////////////////////////////////////////////////
 
 const customerSlice = createSlice({
   name: "customer",
@@ -37,16 +40,6 @@ const customerSlice = createSlice({
 export const { createCustomer, updateName } = customerSlice.actions;
 
 export default customerSlice.reducer;
-
-/////////////////////////////////////////////////
-//        Reducer - Logic-Redux-ToolKit
-/////////////////////////////////////////////////
-
-
-
-
-
-
 
 
 /*
