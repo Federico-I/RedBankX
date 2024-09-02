@@ -1,7 +1,7 @@
-import React from "react"
-import { createSlice } from "@reduxjs/toolkit"
+import React from "react";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialStateCustomer = {
+const initialState = {
   fullName: "",
   nationalID: "",
   createdAt: "",
@@ -13,7 +13,7 @@ const initialStateCustomer = {
 
 const customerSlice = createSlice({
   name: "customer",
-  initialStateCustomer,
+  initialState,
   reducers: {
     createCustomer: {
       prepare( fullName, nationalID ) {
