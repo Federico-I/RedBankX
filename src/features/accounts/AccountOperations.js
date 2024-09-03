@@ -30,7 +30,7 @@ function AccountOperations() {
   }
 
   function handleRequestLoan() {
-    if (!withdrawalAmount || !loanPurpose) return;
+    if (!loanAmount || !loanPurpose) return;
 
     dispatch(requestLoan(loanAmount, loanPurpose));
     setLoanAmount("");
@@ -77,7 +77,7 @@ function AccountOperations() {
         </div>
 
         <div>
-          <label>Request loan</label>
+          <label>Request Loan</label>
           <input
             type="number"
             value={loanAmount}
