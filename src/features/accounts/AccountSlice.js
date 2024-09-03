@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   balance: 0,
   loan: 0,
-  loanPuropse: "",
+  loanPurpose: "",
   isLoading: false,
 };
 
@@ -32,14 +32,14 @@ const accountSlice = createSlice({
         if (state.loan > 0) return;
 
         state.loan = action.payload.amount;
-        state.loanPuropse = action.payload.purpose;
+        state.loanPurpose = action.payload.purpose;
         state.balance = state.balance + action.payload.amount;
       }, 
     },
     payLoan(state) {
       state.balance -= state.loan;
       state.loan = 0;
-      state.loanPuropse = "";
+      state.loanPurpose = "";
     },
     convertingCurrency(state) {
       state.isLoading = true;
