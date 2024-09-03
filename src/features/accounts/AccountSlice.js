@@ -42,7 +42,7 @@ const accountSlice = createSlice({
       state.loanPuropse = "";
     },
     convertingCurrency(state) {
-      state.isLoading = false;
+      state.isLoading = true;
     }
   },
 });
@@ -69,7 +69,7 @@ export function deposit(amount, currency) {
     const converted = data.rates.USD;
 
     // STORE - return acctin 
-    dispatch({ type: "account/deposit", payLoan: converted });
+    dispatch({ type: "account/deposit", payload: converted });
   }
 };
 
